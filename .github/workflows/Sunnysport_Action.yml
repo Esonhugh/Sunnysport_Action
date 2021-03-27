@@ -10,10 +10,11 @@ on:
 
 env:
   UID: ${{ secrets.UID }}
-  SENDKEY: ${{ secrets.SENDKEY }}
   MINSPEED: ${{ secrets.MINSPEED }}
   MINMILEAGE: ${{ secrets.MINMILEAGE }}
-  # PASSWORD: ${{ secrets.PASSWORD }}
+  PASSWORD: ${{ secrets.PASSWORD }}
+  TELEGRAM_BOTAPI: ${{ secrets.TELEGRAM_BOTAPI }}
+  TELEGRAM_USERID: ${{ secrets.TELEGRAM_USERID }}
 
 jobs:
   deploy:

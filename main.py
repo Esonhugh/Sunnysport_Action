@@ -1,4 +1,5 @@
 # coding=utf-8
+import telegram
 import os
 import httpx
 import re
@@ -6,9 +7,13 @@ import time
 
 # CONFIG PART =====================================
 uid = os.environ["UID"]
-SendKey = os.environ["SENDKEY"]
 minSpeed = float(os.environ["MINSPEED"])
 minMileage = int(os.environ["MINMILEAGE"])
+telegram_botapi = os.environ['TELEGRAM_BOTAPI']
+telegram_userid = os.environ['TELEGRAM_USERID']
+password = os.environ['PASS']
+
+bot = telegram.Bot(token=telegram_botapi)
 
 header = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
@@ -34,9 +39,7 @@ vrf = re.search('name="vrf" value="(.*?)">', r.content.decode()).group(1)
 loginData = {
     'username': uid,
     'vrf': vrf,
-    'password': uid
-    # important if you not change the init password as your uid
-    # if you do that please add Secret to your own
+    'password': password
 }
 
 r = session.post('http://hdu.sunnysport.org.cn/login/',headers=header,data=loginData,allow_redirects=False)
@@ -63,14 +66,13 @@ if time.strftime("%Y-%m-%d", time.localtime()) in totalRecord[len(totalRecord)-1
             validTimes += 1
 
 if todayRecord:
-    desp = '今日跑步距离：{}\n\n今日跑步速度：{}\n\n---\n\n'.format(todayRecord['runnerMileage'],round(todayRecord['runnerSpeed'],2))
-    desp += '总里程：{}\n\n总次数：{}\n\n---\n\n'.format(totalMileage,totalTimes)
-    desp += '有效里程：{}\n\n有效次数：{}\n\n---\n\n'.format(totalMileage,totalTimes)
+    desp = '今日跑步距离：{}\n今日跑步速度：{}\n---\n'.format(todayRecord['runnerMileage'],round(todayRecord['runnerSpeed'],2))
+    desp += '总里程：{}\n总次数：{}\n---\n'.format(totalMileage,totalTimes)
+    desp += '有效里程：{}\n有效次数：{}\n---\n'.format(totalMileage,totalTimes)
     print(desp)
     # 推数据
     msg2send = {
         'title': '阳光长跑记录已更新',
         'desp': desp
     }
-    httpx.post('https://sctapi.ftqq.com/{}.send'.format(SendKey),data=msg2send)
-    
+    bot.sendMessage(,chat_id=telegram_userid,text=desp)
