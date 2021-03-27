@@ -75,4 +75,4 @@ if todayRecord:
         'title': '阳光长跑记录已更新',
         'desp': desp
     }
-    bot.sendMessage(,chat_id=telegram_userid,text=desp)
+    bot.sendMessage(chat_id=telegram_userid,text=desp)
