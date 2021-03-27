@@ -12,7 +12,7 @@ env:
   UID: ${{ secrets.UID }}
   MINSPEED: ${{ secrets.MINSPEED }}
   MINMILEAGE: ${{ secrets.MINMILEAGE }}
-  PASSWORD: ${{ secrets.PASSWORD }}
+  PASS: ${{ secrets.PASS }}
   TELEGRAM_BOTAPI: ${{ secrets.TELEGRAM_BOTAPI }}
   TELEGRAM_USERID: ${{ secrets.TELEGRAM_USERID }}
 
