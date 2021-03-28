@@ -13,7 +13,13 @@
 1. Fork 本项目
 2. 填写项目 Secrets
 3. 点上 Star
-   
+
+## YOU Need Know
+
+the time is 11:12 a.m in UTC 
+
+and China is 19:12 p.m in UTC+8
+
 ## Secrets 中的参数
 
 NAME|VALUE|e.g
