@@ -6,7 +6,7 @@ on:
   watch:
     types: started
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '12 11 * * *'
 
 env:
   UID: ${{ secrets.UID }}
