@@ -68,7 +68,7 @@ if time.strftime("%Y-%m-%d", time.localtime()) in totalRecord[len(totalRecord)-1
 if todayRecord:
     desp = '今日跑步距离：{}\n今日跑步速度：{}\n---\n'.format(todayRecord['runnerMileage'],round(todayRecord['runnerSpeed'],2))
     desp += '总里程：{}\n总次数：{}\n---\n'.format(totalMileage,totalTimes)
-    desp += '有效里程：{}\n有效次数：{}\n---\n'.format(totalMileage,totalTimes)
+    desp += '有效里程：{}\n有效次数：{}\n---\n'.format(validMileage,validTimes)
     print(desp)
     # 推数据
     msg2send = {
